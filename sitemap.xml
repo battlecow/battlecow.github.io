@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+    
+    <url>
+      <loc>http://blog.brianmkelley.com/coreos-vmware-networking-bug</loc>
+      
+        <lastmod>2017-02-09T08:17:30-06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://blog.brianmkelley.com/updating-bamboo-mounts</loc>
+      
+        <lastmod>2016-12-15T06:50:02-06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://blog.brianmkelley.com/building-with-docker</loc>
+      
+        <lastmod>2016-04-08T05:13:27-05:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://blog.brianmkelley.com/working-with-coreos</loc>
+      
+        <lastmod>2016-02-16T04:10:55-06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://blog.brianmkelley.com/leveraging-bamboo-with-docker</loc>
+      
+        <lastmod>2016-02-11T15:20:29-06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://blog.brianmkelley.com/intro</loc>
+      
+        <lastmod>2016-02-09T02:11:18-06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+
+  
+    
+    
+
+    
+    <url>
+      <loc>http://blog.brianmkelley.com404.html</loc>
+      
+        <lastmod>2017-02-09T14:45:11-06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+    <url>
+      <loc>http://blog.brianmkelley.com/category/bamboo/</loc>
+      
+        <lastmod>2017-02-09T14:45:11-06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    
+
+    
+    <url>
+      <loc>http://blog.brianmkelley.com/category/docker/</loc>
+      
+        <lastmod>2017-02-09T14:45:11-06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    
+
+    
+    <url>
+      <loc>http://blog.brianmkelley.com/category/intro/</loc>
+      
+        <lastmod>2017-02-09T14:45:11-06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    
+
+    
+    <url>
+      <loc>http://blog.brianmkelley.com/category/me/</loc>
+      
+        <lastmod>2017-02-09T14:45:11-06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    
+
+    
+    <url>
+      <loc>http://blog.brianmkelley.com/category/welcome/</loc>
+      
+        <lastmod>2017-02-09T14:45:11-06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+    <url>
+      <loc>http://blog.brianmkelley.com</loc>
+      
+        <lastmod>2017-02-09T14:45:11-06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+  
+    
+    
+
+    
+    <url>
+      <loc>http://blog.brianmkelley.com/tag/bamboo/</loc>
+      
+        <lastmod>2017-02-09T14:45:11-06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    
+
+    
+    <url>
+      <loc>http://blog.brianmkelley.com/tag/docker/</loc>
+      
+        <lastmod>2017-02-09T14:45:11-06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    
+
+    
+    <url>
+      <loc>http://blog.brianmkelley.com/tag/intro/</loc>
+      
+        <lastmod>2017-02-09T14:45:11-06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    
+
+    
+    <url>
+      <loc>http://blog.brianmkelley.com/tag/me/</loc>
+      
+        <lastmod>2017-02-09T14:45:11-06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    
+
+    
+    <url>
+      <loc>http://blog.brianmkelley.com/tag/welcome/</loc>
+      
+        <lastmod>2017-02-09T14:45:11-06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    
+
+    
+    <url>
+      <loc>http://blog.brianmkelley.com</loc>
+      
+        <lastmod>2017-02-09T14:45:11-06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+
+  
+</urlset>

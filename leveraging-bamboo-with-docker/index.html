@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+  <head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="alternate" href="http://blog.brianmkelley.com" hreflang="en_US">
+<link href="http://gmpg.org/xfn/11" rel="profile">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="theme-color" content="#005344">
+<title> Leveraging Bamboo with Docker | Brian Kelley</title>
+<meta name="google-site-verification" content="zS1dSn20XtA4FJYEOQLXqI0boxZdMnJ2g3beje-cl20">
+<meta name="description" content="Leveraging Bamboo with Docker">
+<meta name="keywords" content="Bamboo, Docker, Build, Agent">
+<!-- Social: Facebook / Open Graph -->
+<meta property="og:url" content="http://blog.brianmkelley.com/leveraging-bamboo-with-docker">
+<meta property="og:title" content=" Leveraging Bamboo with Docker | Brian Kelley">
+<meta property="og:description" content="Leveraging Bamboo with Docker">
+<meta property="og:site_name" content="Brian Kelley">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:author" content="">
+<meta property="og:image" content="http://blog.brianmkelley.com">
+<!-- Social: Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@bmk352">
+<meta name="twitter:domain" content="http://blog.brianmkelley.com">
+<meta name="twitter:title" content=" Leveraging Bamboo with Docker | Brian Kelley">
+<meta name="twitter:description" content="Leveraging Bamboo with Docker">
+<meta name="twitter:image:src" content="http://blog.brianmkelley.com">
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="114x114" href="http://blog.brianmkelley.com/assets/ico/apple-touch-icon-114-0acd80f10b99105ecaf265f6250a2665.png">
+<link rel="apple-touch-icon" sizes="72x72" href="http://blog.brianmkelley.com/assets/ico/apple-touch-icon-72-56b09a6e2d1b155b81897d77b3ad812c.png">
+<link rel="apple-touch-icon" href="http://blog.brianmkelley.com/assets/ico/apple-touch-icon-57-38457ffe7d5392e7dcbfd24de3460bee.png">
+<link rel="shortcut icon" href="http://blog.brianmkelley.com/assets/ico/favicon-f36eca392694957d0447ad24fa367f22.png">
+<!-- rel prev and next -->
+<!-- Canonical link tag -->
+<link rel="canonical" href="http://blog.brianmkelley.com/leveraging-bamboo-with-docker">
+<link rel="alternate" type="application/rss+xml" title="Brian Kelley" href="http://blog.brianmkelley.com/feed.xml">
+<link rel="stylesheet" href="/assets/main-900cd6455fe7c8fc76a8b7bc97fa3acc.css">
+<script src="/assets/modernizr-custom-cb807611a3e262b2eac59444cbab74d6.js" data-cfasync="false"></script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Website",
+  "publisher": "blog.brianmkelley.com",
+  "url": "http://blog.brianmkelley.com/",
+  "description": "DevOps Engineer, Docker enthusiast, programming dabbler"
+}
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'briankelley',
+      baseurl          = '';
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-22893252-3', 'auto');
+  ga('require', 'linkid');
+  ga('send', 'pageview');
+</script>
+  </head>
+  <body class="post-template single">
+    <header class="header">
+  <div class="container">
+    <h1><a href="/">blog.<strong>brianmkelley</strong>.com</a></h1>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="#!" data-modal="modalSearch"><i class="fa fa-search"></i></a></li>
+        <li><a href="/feed.xml" target="_blank"><i class="fa fa-feed"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <main class="wrapper container" itemprop="mainContentOfPage" itemscope="itemscope" itemtype="http://schema.org/Blog">
+      <article class="post" itemscope="itemscope" itemtype="http://schema.org/BlogPosting" itemprop="blogPost">
+  <header class="post-header">
+    <h1>Leveraging Bamboo with Docker</h1>
+    <div class="post-meta">
+      <time datetime="2015-10-13">
+        <i class="fa fa-calendar-o"></i> <time datetime="2016-02-11"> 2016-02-11
+      </time>
+      <span>
+        <i class="fa fa-comments"></i> <a href="/leveraging-bamboo-with-docker#disqus_thread" data-disqus-identifier="/leveraging-bamboo-with-docker">Leave a comment</a>
+      </span>
+      <span>
+        <i class="fa fa-folder-open-o"></i> <a href="/category/docker/">Docker</a>
+      </span>
+    </div>
+  </header>
+  <p>My first technical post comes in direct response to a Blog post over on the <a href="http://blog.avisi.nl/2016/01/22/get-more-out-of-bamboo-with-docker-part-1" title="Bamboo with docker part 1" target="_blank">Avisi Blog</a>, where the author correctly notes there is not a lot of available information about effectively integrating Bamboo with Docker.  Through this post I will explain how we formed the Docker base of our Bamboo infrastructure ensuring it is both scalable and resilient to changes over time.</p>
+<p>Let me first start off by saying, <em>we did not start here.</em></p>
+<p>This has been and continues to be a gradual progression and a long learning process.  The first of many weeks was spent exploring what was even possible with Docker.  A year ago was a very different landscape to what is available today.  We evaluated the possibilities afforded and attempted to ascertain the best fits for our use cases, both in DevOps and developer time.  All along the way Docker has rapidly grown, with more possibilities, documentation, and support throughout the ecosystem.  Our team sits today (and I do mean today, as Docker keeps moving so rapidly) comfortable in what has been created and battle tested through our numerous daily builds.  So with that out of the way, let’s get down to the business of the matter.</p>
+<h3 id="our-trifecta-docker-bamboo-coreos">Our Trifecta: Docker, Bamboo, CoreOS</h3>
+<p>Our infrastructure today consists in a 1:1 ratio where a single Bamboo Docker agent resides on a single CoreOS machine.  This is in stark contrast to our previous architecture where we would typically load several Bamboo Agents onto a single VM host.</p>
+<p>The question arises then, is this a waste?  Because all of these CoreOS machines only run a single Bamboo Docker agent, the answer is: it depends.  Where before we may have had a build agent (or several) on specific machines to handle specific types of builds due to the dependencies required, Docker frees us from this limitation.  The payoff from using Docker comes when you are able to handle wholly different builds on the exact same box without the headache of worrying what version of a package is installed on the system.  We have spent a great deal of time gathering build requirements (read: trial and error) and either reusing a publically available official Docker container, creating our own from scratch, or something in between.  We can efficiently use every build agent for many jobs and it will not matter what job goes where.</p>
+<p>One of of main advantages of moving away from monolithic systems has been to ease the system administration tasks so our team could focus on other areas.  This is one of the main reasons behind our choice of <a href="https://coreos.com" target="_blank">CoreOS</a> for the OS platform.  CoreOS is a stripped down linux distribution utilizing Systemd in which anything beyond a few basic system binaries requires the use of a Docker container.  Our first foray utilizing Docker with builds was done with Ubuntu, and while it solved a problem it still left a headache of ensuring the system (and especially Docker) was up to date.  Not the most elegant of solutions for our purposes as a generic sprawling build infrastructure.  With CoreOS we add user metadata to load our internal CA, start <code>bamboo-agent-data</code> and <code>bamboo-agent</code> containers, and ensure that the agent itself is up to date.  Any system updates are handled automatically by CoreOS through their use of release channels, greatly easing the burden on the team for day to day administrative tasks.  CoreOS is very fast to boot, very fast to update, and through the metadata config with Systemd unit files makes spinning up new agents a breeze.</p>
+<p>So what does this look like in practice?</p>
+<h3 id="high-level">High Level</h3>
+<p><img src="/assets/images/CoreOS-Bamboo-Agents.png" srcset="            /assets/images/resized/480/CoreOS-Bamboo-Agents.png 480w,     /assets/images/CoreOS-Bamboo-Agents.png 562w" style="max-width:400px" /></p>
+<p>As you may note from the diagram above, our Docker agent is the local orchestrator for new containers outside of its own environment.  A single Bamboo agent and data container agent reside on every CoreOS host.  My first avenue of thinking was attempting the Inception model of Docker within Docker.  This did not work well.  The sibling model has been far easier not only to comprehend and debug, but also from a purely technical standpoint then attempting Inception.  The <code>bamboo-agent-data</code> container follows the data container abstraction model, wherein a container resides outside of the main container to persist stateful data.  In the case of Bamboo this is by default the <code>/root/bamboo-agent-home/xml-data/build-dir</code>.  Having this data container allows for the sharing of the bamboo working directory between the main bamboo agent and its sibling containers during build time.  Any time a new build is kicked off and containers are created the build scripts typically reference absolute paths <code>${bamboo.build.working.directory}</code> in order to obtain the correct data, and return the results to Bamboo.</p>
+<h3 id="code">Code</h3>
+<p>Okay so those are high level ideas of how our system is setup to function, what does this look like from the terminal?</p>
+<p>So to start things off we have the simple bamboo-data-container:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">docker run -d --name bamboo-agent-data.1 <span class="se">\ </span>
+-v /bamboo-agents/agent.1:/root/bamboo-agent-home/xml-data/build-dir <span class="se">\ </span>
+bamboo-agent-data</code></pre></div>
+<p>Breaking down this line, we are starting a docker container as a daemon (-d), with a volume mount (-v) from a directory on CoreOS (/bamboo-agents/agent.1) into the volume within the container (/root/bamboo-agent-home/xml-data/build-dir), naming the container for later reference (–name), and finally running the image.</p>
+<p>Pretty basic so far, nothing too different than what you might have seen before.</p>
+<p>Now onto where the fun begins, the bamboo-agent container:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">docker run -d --name<span class="o">=</span>bamboo-agent <span class="se">\ </span>
+-v /usr/lib/libdevmapper.so.1.02:/usr/lib/libdevmapper.so.1.02 <span class="se">\ </span>
+-v /usr/bin/docker:/usr/bin/docker <span class="se">\ </span>
+-v /var/run/docker.sock:/var/run/docker.sock <span class="se">\ </span>
+--volumes-from<span class="o">=</span>bamboo-agent-data.1 bamboo-agent</code></pre></div>
+<p>So there are a few interesting items within this line which make the magic of sibling containers function.  Allow me to break this down as before.</p>
+<p>We are starting a docker container as a daemon (-d), with several volume mounts (-v), a volumes-from mount (–volumes-from), and finally the name of the image.</p>
+<p>The easy piece to understand is the volumes-from, where we take the volume exposed by our data container and mount it to the same location within the Bamboo agent container.  With that argument we are able to persist build data across reboots, or restarts of the agent container.  This volume also gets mounted to any other sibling container to obtain the checked out source code, or other artifacts from Bamboo’s functions.</p>
+<p>The truly interesting details are the the rest of the volume arguments.  These provide the basis of allowing our Bamboo agent container not to itself have the Docker binary installed, but instead our dependencies are injected into the agent from the CoreOS machine.  This frees us from caring (for the most part) what version of Docker is running on the CoreOS container.  By injecting everything Docker requires to be run (shared object library, the binary itself, the Docker server socket) every time CoreOS updates to a newer version of Docker and the agent restarts, it automatically takes in those changes without any further administration on our part.</p>
+<h3 id="wrap-up">Wrap up</h3>
+<p>These three pieces form the basis of our build infrastructure, and leveraging them has been a challenging but fruitful undertaking.  With these building blocks creating isolated builds which report back to Bamboo has been possible, with little administrative overhead as they churn away.</p>
+  <footer class="post-footer">
+<aside class="share">
+  <h4>Share this</h4>
+  <a href="http://twitter.com/share?text=Leveraging Bamboo with Docker&amp;url=http://blog.brianmkelley.com/leveraging-bamboo-with-docker&amp;hashtags=devops,blog&amp;via=blog.brianmkelley.com"
+  onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+    <i class="fa fa-twitter-square"></i>
+  </a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.brianmkelley.com/leveraging-bamboo-with-docker"
+  onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+    <i class="fa fa-facebook-square"></i>
+  </a>
+</aside>
+      <hr>
+<aside id="comments" class="disqus">
+  <h3 class="txt-center"><i class="fa fa-comments"></i> Comments</h3>
+  <hr>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = '/leveraging-bamboo-with-docker';
+    var disqus_title = 'Leveraging Bamboo with Docker';
+    var disqus_url = 'http://blog.brianmkelley.com/leveraging-bamboo-with-docker';
+    /*var disqus_developer = 1;*/
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+  </noscript>
+</aside>
+  </footer>
+</article>
+    </main>
+<footer class="footer">
+  <div class="container">
+    <ul class="icons">
+      <li>
+        <a href="http://github.com/battlecow" class="icon-github" target="_blank">
+          <i class="fa fa-github"></i>
+        </a>
+      </li>
+      <!--<li>
+        <a href="" class="icon-facebook" target="_blank">
+          <i class="fa fa-facebook"></i>
+        </a>
+      </li>-->
+      <li>
+        <a href="https://twitter.com/bmk352" class="icon-twitter" target="_blank">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+      <!--<li>
+        <a href="" class="icon-instagram" target="_blank">
+          <i class="fa fa-instagram"></i>
+        </a>
+      </li>
+      <li>
+        <a href="" class="icon-linkedin" target="_blank">
+          <i class="fa fa-linkedin"></i>
+        </a>
+      </li>-->
+    </ul>
+    <div class="clearfix copyright">
+      <em>© Copyright 2016 • Brian Kelley</em>
+    </div>
+  </div>
+</footer>
+<div id="modalSearch" class="modal">
+  <div class="modal__overlay"></div>
+  <div class="modal__content">
+    <a href="#!" class="modal-close" data-modal-close>&times;</a>
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Search in 6 articles">
+      <ul id="results-container"></ul>
+    </div>
+  </div>
+</div>
+    <script src="/assets/main-2cd6b7ba495290911c76c54ca90872b5.js"></script>
+  </body>
+</html>

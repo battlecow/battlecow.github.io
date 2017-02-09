@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Brian Kelley | DevOps Engineer</title>
+    <description>DevOps Engineer, Docker enthusiast, programming dabbler</description>
+    <link>http://blog.brianmkelley.com/</link>
+    <atom:link href="http://blog.brianmkelley.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 09 Feb 2017 14:45:11 -0600</pubDate>
+    <lastBuildDate>Thu, 09 Feb 2017 14:45:11 -0600</lastBuildDate>
+    <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Coreos VMWare Networking Bug</title>
+        <description>&lt;h3 id=&quot;preface&quot;&gt;Preface&lt;/h3&gt; &lt;p&gt;Several weeks ago we (DevOps) began getting reports and tracking a number of seemingly unrelated build failures due to what appeared to be either a loss of network connectivity or general DNS lookup failures. As per my previous posts, our build environment relies heavily on numerous different containers spinning up for each build and its associated test suites. This model utilizes Docker’s built-in bridge networking to create a new virtual ethernet adapter and NAT ports for communication to and from outside of the container. Any new container spun up during a build is inherently ephemeral and gets automatically...</description>
+        <pubDate>Thu, 09 Feb 2017 08:17:30 -0600</pubDate>
+        <link>http://blog.brianmkelley.com/coreos-vmware-networking-bug</link>
+        <guid isPermaLink="true">http://blog.brianmkelley.com/coreos-vmware-networking-bug</guid>
+        
+        <category>CoreOS,</category>
+        
+        <category>VMWare</category>
+        
+        
+        <category>coreos,</category>
+        
+        <category>vmware</category>
+        
+      </item>
+    
+      <item>
+        <title>Bamboo Agent Enhancements</title>
+        <description>&lt;p&gt;After several months of runtime with ~30 Bamboo agents running within their respective containers on the CoreOS hosts and many builds to their name, the setup I had configured for use was running into several issues. Namely, the ability to track failures due to host or agent issues and apply Bamboo server side configurations (and have them persisted). Tackling these was not too difficult but was of course a learning experience digging into the Docker documentation.&lt;/p&gt; &lt;h3 id=&quot;hostname&quot;&gt;Hostname&lt;/h3&gt; &lt;p&gt;The setup I had posted about previously would automatically spin up a Bamboo agent each time a CoreOS server would start, but...</description>
+        <pubDate>Thu, 15 Dec 2016 06:50:02 -0600</pubDate>
+        <link>http://blog.brianmkelley.com/updating-bamboo-mounts</link>
+        <guid isPermaLink="true">http://blog.brianmkelley.com/updating-bamboo-mounts</guid>
+        
+        <category>Docker,</category>
+        
+        <category>Bamboo,</category>
+        
+        <category>Build</category>
+        
+        
+        <category>docker</category>
+        
+      </item>
+    
+      <item>
+        <title>Building with Docker</title>
+        <description>&lt;p&gt;In my previous posts I talk specifically on how and why we use Bamboo, CoreOS, and Docker together to allow our build infrastructure to not only be easily scalable, but also highly agnostic, requiring little dependency management. In this post I want to expand on exactly how we build and test.&lt;/p&gt; &lt;h3 id=&quot;recap&quot;&gt;Recap&lt;/h3&gt; &lt;p&gt;Just to quickly recap where we stand in our setup, a CoreOS server has our mounted iso running a cloudinit script. The script creates and starts our Bamboo agent data container and long running Bamboo Agent container. When the Bamboo Agent container finishes starting up, it registers...</description>
+        <pubDate>Fri, 08 Apr 2016 05:13:27 -0500</pubDate>
+        <link>http://blog.brianmkelley.com/building-with-docker</link>
+        <guid isPermaLink="true">http://blog.brianmkelley.com/building-with-docker</guid>
+        
+        <category>Docker,</category>
+        
+        <category>Bamboo,</category>
+        
+        <category>Build</category>
+        
+        
+        <category>docker</category>
+        
+      </item>
+    
+      <item>
+        <title>Working with CoreOS</title>
+        <description>&lt;p&gt;In my previous post I mentioned &lt;a href=&quot;https://coreos.com&quot; title=&quot;CoreOS&quot; target=&quot;_blank&quot;&gt;CoreOS&lt;/a&gt; as being one of our key components within our Dockerized build infrastructure. I wanted to spend some time to elaborate on how we utilize CoreOS to ease our system administrative overhead and allow for (near) effortless scaling both inside and outside the firewall.&lt;/p&gt; &lt;p&gt;Our initial foray into utilizing Docker for builds was to install it on one of our current Ubuntu build servers. Having just the Docker binary installed and the Bamboo agent running normally functions exactly as you would expect. From your build scripts you can call out to...</description>
+        <pubDate>Tue, 16 Feb 2016 04:10:55 -0600</pubDate>
+        <link>http://blog.brianmkelley.com/working-with-coreos</link>
+        <guid isPermaLink="true">http://blog.brianmkelley.com/working-with-coreos</guid>
+        
+        <category>CoreOS,</category>
+        
+        <category>Bamboo,</category>
+        
+        <category>Build</category>
+        
+        
+        <category>coreos</category>
+        
+      </item>
+    
+      <item>
+        <title>Leveraging Bamboo with Docker</title>
+        <description>&lt;p&gt;My first technical post comes in direct response to a Blog post over on the &lt;a href=&quot;http://blog.avisi.nl/2016/01/22/get-more-out-of-bamboo-with-docker-part-1&quot; title=&quot;Bamboo with docker part 1&quot; target=&quot;_blank&quot;&gt;Avisi Blog&lt;/a&gt;, where the author correctly notes there is not a lot of available information about effectively integrating Bamboo with Docker. Through this post I will explain how we formed the Docker base of our Bamboo infrastructure ensuring it is both scalable and resilient to changes over time.&lt;/p&gt; &lt;p&gt;Let me first start off by saying, &lt;em&gt;we did not start here.&lt;/em&gt;&lt;/p&gt; &lt;p&gt;This has been and continues to be a gradual progression and a long learning process. The first of...</description>
+        <pubDate>Thu, 11 Feb 2016 15:20:29 -0600</pubDate>
+        <link>http://blog.brianmkelley.com/leveraging-bamboo-with-docker</link>
+        <guid isPermaLink="true">http://blog.brianmkelley.com/leveraging-bamboo-with-docker</guid>
+        
+        <category>Docker,</category>
+        
+        <category>Bamboo,</category>
+        
+        <category>Build</category>
+        
+        
+        <category>docker</category>
+        
+      </item>
+    
+      <item>
+        <title>Intro</title>
+        <description>&lt;p&gt;I wanted to kick things off with an introductory post to explain a little about where I am coming from, bear with me as my writing skills are far more technical than prose.&lt;/p&gt; &lt;p&gt;When I started at JAMF over two years ago I was only the second member of DevOps, making it an actual team. At that time we relied on SVN to handle the source code and Jenkins to handle the builds. The engineering team was significantly smaller than it is today, and this system began feeling constrained for where the Engineering department wanted to be heading.&lt;/p&gt; &lt;p&gt;Over the...</description>
+        <pubDate>Tue, 09 Feb 2016 02:11:18 -0600</pubDate>
+        <link>http://blog.brianmkelley.com/intro</link>
+        <guid isPermaLink="true">http://blog.brianmkelley.com/intro</guid>
+        
+        <category>Intro</category>
+        
+        
+        <category>intro</category>
+        
+      </item>
+    
+  </channel>
+</rss>
